@@ -1,0 +1,22 @@
+<project name="jarjar-to-the-rescue">
+	<property name="jarfile" value="httpcomponents-client-4.5.2-jarjar.jar"/>
+	<path id="classpath">
+		<pathelement location="jarjar-1.4.jar"/>
+		<pathelement location="asm-5.1.jar"/>
+	</path>
+	<taskdef name="jarjar" classname="com.tonicsystems.jarjar.JarJarTask" classpathref="classpath"/>
+	<delete file="${jarfile}"/>
+	<jarjar destfile="${jarfile}">
+		<zipfileset src="commons-codec-1.9.jar"/>
+		<zipfileset src="commons-logging-1.2.jar"/>
+		<zipfileset src="fluent-hc-4.5.2.jar"/>
+		<zipfileset src="httpclient-4.5.2.jar"/>
+		<zipfileset src="httpclient-cache-4.5.2.jar"/>
+		<zipfileset src="httpclient-win-4.5.2.jar"/>
+		<zipfileset src="httpcore-4.4.4.jar"/>
+		<zipfileset src="httpmime-4.5.2.jar"/>
+		<zipfileset src="jna-4.1.0.jar"/>
+		<zipfileset src="jna-platform-4.1.0.jar"/>
+		<rule pattern="org.apache.**" result="com.apache.@1"/>
+	</jarjar>
+</project>
